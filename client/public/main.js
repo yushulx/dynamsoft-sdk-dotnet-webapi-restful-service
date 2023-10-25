@@ -140,12 +140,25 @@ async function getDevices() {
 async function acquireImage() {
     let url = host + 'dynamsoft/dwt/ScanDocument';
     if (devices.length > 0 && selectSources.selectedIndex >= 0) {
+        let parameters = {
+            device: devices[selectSources.selectedIndex]['device'],
+            config: {
+                IfShowUI: false,
+                PixelType: 2,
+                //XferCount: 1,
+                //PageSize: 1,
+                Resolution: 200,
+                IfFeederEnabled: false,
+                IfDuplexEnabled: false,
+            }
+        };
+
         let response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: devices[selectSources.selectedIndex]['device']
+            body: JSON.stringify(parameters)
         });
 
         const contentType = response.headers.get('Content-Type');

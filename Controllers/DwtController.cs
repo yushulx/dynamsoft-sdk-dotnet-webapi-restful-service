@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Twain.Wia.Sane.Scanner;
+using System.Text.Json;
 
 namespace DynamsoftRestfulService.Controllers
 {
@@ -37,21 +38,10 @@ namespace DynamsoftRestfulService.Controllers
                 {
                     var json = await reader.ReadToEndAsync();
 
-                    var parameters = new Dictionary<string, object>
-                {
-                    {"license", "LICENSE-KEY"},
-                    {"device", json.ToString()}
-                };
+                    Dictionary<string, object>? parameters = JsonSerializer.Deserialize<Dictionary<string, object>>(json);
+                    if (parameters == null) return BadRequest("No content found");
 
-                    parameters["config"] = new Dictionary<string, object>
-                {
-                    {"IfShowUI", false},
-                    {"PixelType", 2},
-                    {"Resolution", 200},
-                    {"IfFeederEnabled", false},
-                    {"IfDuplexEnabled", false}
-                };
-
+                    parameters["license"] = "LICENSE-KEY";
                     string jobId = await scannerController.ScanDocument(host, parameters);
 
                     return Ok(jobId);
