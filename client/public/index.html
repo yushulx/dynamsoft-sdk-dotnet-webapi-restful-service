@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="utils.js"></script>
+    <title>Dynamsoft RESTful API Demo</title>
+</head>
+
+<body>
+    <h1>RESTful API Demo for Dynamsoft Products</h1>
+
+    <!-- Get Dynamsoft Products -->
+    <div class="connection">
+        <div class="row">
+            <div>
+                <label>Enter host address: </label>
+                <input type="text" id="host" placeholder="http://192.168.8.72:5000/">
+                <button onclick="connect()">connect</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div>
+                <select onchange="selectChanged()" id="dropdown">
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dynamic Web TWAIN -->
+    <div class="container" id="dwt">
+        <div class="row">
+            <div>
+                <button onclick="getDevices()">Get Devices</button>
+                <select id="sources">
+                </select>
+                <button onclick="acquireImage()">Scan Documents</button>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="full-img">
+                <img id="document-image">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="thumb-bar" id="thumb-bar">
+                <div class="thumb-box" id="thumb-box">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dynamsoft Barcode Reader -->
+    <div class="container" id="dbr">
+        <div class="row">
+            <div>
+                <button onclick="getDevices()">Get Devices</button>
+                <select id="sources">
+                </select>
+                <button onclick="acquireImage()">Scan Documents</button>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="full-img">
+                <img id="document-image">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="thumb-bar" id="thumb-bar">
+                <div class="thumb-box" id="thumb-box">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dynamsoft Label Recognizer -->
+    <div class="container" id="dlr">
+        <div class="row">
+            <div>
+                <button onclick="getDevices()">Get Devices</button>
+                <select id="sources">
+                </select>
+                <button onclick="acquireImage()">Scan Documents</button>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="full-img">
+                <img id="document-image">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="thumb-bar" id="thumb-bar">
+                <div class="thumb-box" id="thumb-box">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dynamsoft Document Normalizer -->
+    <div class="container" id="ddn">
+        <div class="row">
+            <div>
+                <button onclick="getDevices()">Get Devices</button>
+                <select id="sources">
+                </select>
+                <button onclick="acquireImage()">Scan Documents</button>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="full-img">
+                <img id="document-image">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="thumb-bar" id="thumb-bar">
+                <div class="thumb-box" id="thumb-box">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
