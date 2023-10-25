@@ -150,7 +150,6 @@ async function acquireImage() {
 
         const contentType = response.headers.get('Content-Type');
         const result = await response.text();
-        console.log(result)
 
         url = host + 'dynamsoft/dwt/GetImageStream/' + result;
 
