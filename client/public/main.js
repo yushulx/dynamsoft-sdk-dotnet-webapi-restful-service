@@ -113,6 +113,7 @@ let selectSources = document.getElementById("sources");
 let devices = [];
 
 async function getDevices() {
+    document.getElementById("loading-indicator").style.display = "flex";
     selectSources.innerHTML = "";
     let url = host + 'dynamsoft/dwt/getdevices';
     const response = await fetch(url, { "method": "GET" });
@@ -135,6 +136,7 @@ async function getDevices() {
         }
 
     }
+    document.getElementById("loading-indicator").style.display = "none";
 }
 
 async function acquireImage() {
