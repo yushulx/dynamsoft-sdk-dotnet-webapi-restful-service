@@ -26,6 +26,25 @@ To get started with the project, follow these steps:
     node app.js
     ```
 
+**Dynamic Web TWAWIN**
+
+<img src="https://github.com/yushulx/dynamsoft-sdk-dotnet-webapi-restful-service/assets/2202306/b41bc94f-4f91-40c3-8aa2-37513bb7417b" width="400">
+
+
+**Dynamsoft Barcode Reader**
+
+<img src="https://github.com/yushulx/dynamsoft-sdk-dotnet-webapi-restful-service/assets/2202306/26dc6be3-202b-443f-ac30-0d081d6d9516" width="400">
+
+
+**Dynamsoft Label Recognizer**
+
+<img src="https://github.com/yushulx/dynamsoft-sdk-dotnet-webapi-restful-service/assets/2202306/0555ae72-cacc-423e-a68d-21d0b37bb1a6" width="400">
+
+
+**Dynamsoft Document Normalizer**
+
+<img src="https://github.com/yushulx/dynamsoft-sdk-dotnet-webapi-restful-service/assets/2202306/2e2ce815-40b1-4745-9485-b897c8009c21" width="400">
+
 
 ## Usage
 
