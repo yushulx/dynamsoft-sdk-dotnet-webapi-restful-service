@@ -41,7 +41,7 @@ namespace DynamsoftRestfulService.Controllers
                     Dictionary<string, object>? parameters = JsonSerializer.Deserialize<Dictionary<string, object>>(json);
                     if (parameters == null) return BadRequest("No content found");
 
-                    parameters["license"] = "LICENSE-KEY";
+                    parameters["license"] = LicenseManager.dwt;
                     string jobId = await scannerController.ScanDocument(host, parameters);
 
                     return Ok(jobId);
