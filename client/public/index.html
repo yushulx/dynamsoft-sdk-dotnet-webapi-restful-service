@@ -44,7 +44,7 @@
 
         <div class="row">
             <div class="full-img">
-                <img id="document-image">
+                <img id="scanner-image">
             </div>
         </div>
 
@@ -60,78 +60,73 @@
     <div class="container" id="dbr">
         <div class="row">
             <div>
-                <button onclick="getDevices()">Get Devices</button>
-                <select id="sources">
-                </select>
-                <button onclick="acquireImage()">Scan Documents</button>
+                <input type="file" id="barcode-file" accept="image/*" />
+                <button onclick="decodeBarcode()">Read Barcode</button>
             </div>
 
         </div>
 
         <div class="row">
-            <div class="full-img">
-                <img id="document-image">
+            <div id="imageview">
+                <img id="barcode-image" src="https://via.placeholder.com/640x480" />
             </div>
         </div>
 
         <div class="row">
-            <div class="thumb-bar" id="thumb-bar">
-                <div class="thumb-box" id="thumb-box">
-                </div>
+            <div>
+                <textarea id="barcode-result"></textarea>
             </div>
         </div>
+
     </div>
 
     <!-- Dynamsoft Label Recognizer -->
     <div class="container" id="dlr">
         <div class="row">
             <div>
-                <button onclick="getDevices()">Get Devices</button>
-                <select id="sources">
-                </select>
-                <button onclick="acquireImage()">Scan Documents</button>
+                <input type="file" id="mrz-file" accept="image/*" />
+                <button onclick="detectMrz()">Detect MRZ</button>
             </div>
 
         </div>
 
         <div class="row">
-            <div class="full-img">
-                <img id="document-image">
+            <div id="imageview">
+                <img id="mrz-image" src="https://via.placeholder.com/640x480" />
             </div>
         </div>
 
         <div class="row">
-            <div class="thumb-bar" id="thumb-bar">
-                <div class="thumb-box" id="thumb-box">
-                </div>
+            <div>
+                <textarea id="mrz-result"></textarea>
             </div>
         </div>
+
     </div>
 
     <!-- Dynamsoft Document Normalizer -->
     <div class="container" id="ddn">
         <div class="row">
             <div>
-                <button onclick="getDevices()">Get Devices</button>
-                <select id="sources">
-                </select>
-                <button onclick="acquireImage()">Scan Documents</button>
+                <input type="file" id="document-file" accept="image/*" />
+                <button onclick="rectifyDocument()">Rectify Document</button>
             </div>
 
         </div>
 
         <div class="row">
-            <div class="full-img">
-                <img id="document-image">
+            <div id="imageview">
+                <img id="document-image" src="https://via.placeholder.com/640x480" />
             </div>
         </div>
 
         <div class="row">
-            <div class="thumb-bar" id="thumb-bar">
-                <div class="thumb-box" id="thumb-box">
-                </div>
+            <div>
+                <textarea id="document-result"></textarea>
+                <img id="document-rectified-image" />
             </div>
         </div>
+
     </div>
 
     <script src="main.js"></script>

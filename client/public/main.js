@@ -169,7 +169,7 @@ async function acquireImage() {
         response = await fetch(url, { method: 'GET' });
 
         let imageBlob = await response.blob();
-        let img = document.getElementById('document-image');
+        let img = document.getElementById('scanner-image');
         url = URL.createObjectURL(imageBlob);
         img.src = url;
 
@@ -194,7 +194,151 @@ async function acquireImage() {
 
 }
 
+// Dynamsoft Barcode Reader
+document.getElementById("barcode-file").addEventListener("change", function () {
+    document.getElementById('barcode-result').innerHTML = '';
+    let currentFile = this.files[0];
+    if (currentFile == null) {
+        return;
+    }
+    var fr = new FileReader();
+    fr.onload = function () {
+        let image = document.getElementById('barcode-image');
+        image.src = fr.result;
+    }
+    fr.readAsDataURL(currentFile);
+});
 
+async function decodeBarcode() {
+    let url = host + 'dynamsoft/dbr/DecodeBarcode';
 
+    const input = document.getElementById('barcode-file');
+    const file = input.files[0];
 
+    if (!file) {
+        return;
+    }
 
+    const formData = new FormData();
+    formData.append('image', file);
+
+    let response = await fetch(url, {
+        method: 'POST',
+        body: formData
+    });
+
+    if (response.headers.get('Content-Type').includes('application/json')) {
+        let data = await response.json();
+        let content = 'total barcode(s) found: ' + data.length;
+        let index = 0;
+        data.forEach(element => {
+            content += '\n';
+            content += index + ". text: " + element['text'] + ", format: " + element['format1'];
+            index += 1;
+        });
+        document.getElementById('barcode-result').innerHTML = content;
+    }
+    else if (response.headers.get('Content-Type').includes('text/plain')) {
+        let data = await response.text();
+        document.getElementById('barcode-result').innerHTML = data;
+    }
+}
+
+// Dynamsoft Label Recognizer
+document.getElementById("mrz-file").addEventListener("change", function () {
+    document.getElementById('barcode-result').innerHTML = '';
+    let currentFile = this.files[0];
+    if (currentFile == null) {
+        return;
+    }
+    var fr = new FileReader();
+    fr.onload = function () {
+        let image = document.getElementById('mrz-image');
+        image.src = fr.result;
+    }
+    fr.readAsDataURL(currentFile);
+});
+
+async function detectMrz() {
+    let url = host + 'dynamsoft/dlr/DetectMrz';
+
+    const input = document.getElementById('mrz-file');
+    const file = input.files[0];
+
+    if (!file) {
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('image', file);
+
+    let response = await fetch(url, {
+        method: 'POST',
+        body: formData
+    });
+
+    if (response.headers.get('Content-Type').includes('application/json')) {
+        let data = await response.json();
+        document.getElementById('mrz-result').innerHTML = JSON.stringify(data);
+    }
+    else if (response.headers.get('Content-Type').includes('text/plain')) {
+        let data = await response.text();
+        document.getElementById('mrz-result').innerHTML = data;
+    }
+}
+
+// Dynamsoft Document Normalizer
+document.getElementById("document-file").addEventListener("change", function () {
+    let currentFile = this.files[0];
+    if (currentFile == null) {
+        return;
+    }
+    var fr = new FileReader();
+    fr.onload = function () {
+        let image = document.getElementById('document-image');
+        image.src = fr.result;
+    }
+    fr.readAsDataURL(currentFile);
+});
+
+async function rectifyDocument() {
+    let url = host + 'dynamsoft/ddn/rectifyDocument';
+
+    const input = document.getElementById('document-file');
+    const file = input.files[0];
+
+    if (!file) {
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('image', file);
+
+    let response = await fetch(url, {
+        method: 'POST',
+        body: formData
+    });
+
+    if (response.headers.get('Content-Type').includes('text/plain')) {
+        let data = await response.text();
+        document.getElementById('document-result').innerHTML = data;
+
+        let divElement = document.getElementById("document-result");
+        divElement.style.display = "block";
+
+        divElement = document.getElementById("document-rectified-image");
+        divElement.style.display = "none";
+    }
+    else if (response.headers.get('Content-Type').includes('application/octet-stream')) {
+        let data = await response.blob();
+        let img = document.getElementById('document-rectified-image');
+        let url = URL.createObjectURL(data);
+        img.src = url;
+
+        let divElement = document.getElementById("document-rectified-image");
+        divElement.style.display = "block";
+
+        divElement = document.getElementById("document-result");
+        divElement.style.display = "none";
+    }
+}
