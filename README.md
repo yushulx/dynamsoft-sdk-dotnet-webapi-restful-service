@@ -2,6 +2,12 @@
 
 This project is designed to create a RESTful service for Dynamsoft products, encompassing Dynamic Web TWAIN, Dynamsoft Barcode Reader, Dynamsoft Label Recognizer, and Dynamsoft Document Normalizer. The service is developed with .NET WebAPI and can be tested using the included web client project.
 
+
+
+https://github.com/yushulx/dynamsoft-sdk-dotnet-webapi-restful-service/assets/2202306/c097b67f-6e5c-47f0-8ecc-2ce93be7bceb
+
+
+
 ## Supported Deployment Platforms
 - Windows
 - Linux
